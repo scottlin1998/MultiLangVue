@@ -1,32 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <FileView />
+    <van-tabbar v-model="active" fixed placeholder>
+      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+      <van-tabbar-item icon="search">标签</van-tabbar-item>
+      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import FileView from "@/views/FileView.vue";
+@Component({
+  components: {
+    FileView
+  }
+})
+export default class App extends Vue {
+  private active = 0;
+  created() {
+    console.log(12345);
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  height: calc(100vh);
+  width: calc(100vw);
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 60px; */
 }
 </style>
