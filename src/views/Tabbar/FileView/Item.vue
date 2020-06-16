@@ -1,5 +1,5 @@
 <template>
-  <van-cell clickable>{{ index }} - {{ source.text }}</van-cell>
+  <div>{{ index }} - {{ source.text }}</div>
 </template>
 
 <script>

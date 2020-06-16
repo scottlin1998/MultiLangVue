@@ -1,9 +1,11 @@
 <template>
-  <router-view id="app" />
+  <keep-alive>
+    <router-view id="app" />
+  </keep-alive>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 // import FileView from "@/views/FileView.vue";
 @Component({
   components: {
@@ -12,9 +14,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class App extends Vue {
   private active = 0;
-  created() {
-    console.log(12345);
-  }
 }
 </script>
 

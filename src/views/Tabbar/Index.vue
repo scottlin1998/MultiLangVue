@@ -1,6 +1,8 @@
 <template>
   <div class="tabbarView">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <van-tabbar v-model="active" placeholder fixed>
       <van-tabbar-item icon="home-o">标签</van-tabbar-item>
       <van-tabbar-item icon="search">标签</van-tabbar-item>
@@ -11,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 // import FileView from "@/views/FileView.vue";
 @Component({
   components: {
@@ -20,8 +22,5 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class TabbarView extends Vue {
   private active = 0;
-  created() {
-    console.log(12345);
-  }
 }
 </script>

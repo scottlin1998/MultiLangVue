@@ -4,7 +4,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes: Array<RouteConfig> = [
+const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'TabbarView',
@@ -16,6 +16,16 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "about" */ '@/views/Tabbar/FileView/Index.vue'),
       }
     ]
+  },
+  {
+    path:'/fileSetting',
+    name: 'FileSetting',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Setting/FileSetting/Index.vue'),
+  },
+  {
+    path:'/fileCollection',
+    name: 'FileCollection',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/FileCollection/Index.vue'),
   }
 ]
 

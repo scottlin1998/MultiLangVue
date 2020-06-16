@@ -2,10 +2,8 @@ export default class PathHistory {
     private history: string[] = [];
     private _currentIndex = 0;
 
-    constructor()
-    constructor(initialValue: string)
-    constructor(x?: string) {
-        x && this.go(x);
+    constructor(initialValue?: string) {
+        if (initialValue) this.go(initialValue);
     }
     get currentIndex() {
         return this._currentIndex;
@@ -27,43 +25,43 @@ export default class PathHistory {
         return this.history[0];
     }
     get currentPathDetail() {
-        // 将路径转为对象/(?<=[^/]+)\/+(?=[^/]+)/
-        const tempPaths = this.currentPath.split("/");
-        console.log(tempPaths, this.currentPath, 123456);
+        const result: { name: string; fullPath: string }[] = [];
+        // 将路径转为对象/(?<=[^/]+)\/+(?=[^/]+)|(?<=^\/)/
+        const tempPaths = this.currentPath.split(/(?<=[^/]+)\/+(?=[^/]+)|(?<=^\/)/);
         // 记录每个path的详细路径
-        let fullPath = "";
+        let fullPath = tempPaths.shift() || "";
+        // 加入根目录
+        result.push({ name: fullPath, fullPath });
         // 清空路径对象
-        const result: Array<{ name: string; fullPath: string }> = [];
         // 重新添加路径信息
         tempPaths.forEach((name) => {
-            if (!name) return;
-            fullPath += name + "/";
-            result.push({ name: name || "/", fullPath });
+            fullPath += (fullPath !== "/" ? "/" : "") + name;
+            result.push({ name, fullPath });
         });
-        console.log(result);
+        // console.log(result);
         return result;
     }
     get currentNameIndex() {
         return this.currentPathDetail.length - 1;
     }
     set currentNameIndex(index: number) {
-        index;
+        // typeof index === "number";
     }
     // 前进
-    go(): string
-    go(index: number): string
-    // 跳转
-    go(path: string): string
+    // go(): string
+    // go(index: number): string
+    // // 跳转
+    // go(path: string): string
     go(x?: string | number): string {
-        if (typeof x == "string") {
+        if (typeof x === "string") {
             // 转化\字符
             x = x.replace(/[\\/]+/g, "/");
             // 当前位置在历史尾部 && 历史尾部的值不等于新插入的值
-            if (this.history.length - 1 == this.currentIndex && this.history[this.currentIndex] != x) {
+            if (this.history.length - 1 === this.currentIndex && this.history[this.currentIndex] !== x) {
                 // 情况一：插入新历史
                 this.history.push(x);
                 this.currentIndex++;
-            } else if (this.history[this.currentIndex] != x) {
+            } else if (this.history[this.currentIndex] !== x) {
                 // 情况二：删除旧历史 和 插入新历史
                 this.history.splice(
                     this.currentIndex + 1,
@@ -71,9 +69,9 @@ export default class PathHistory {
                     x);
                 this.currentIndex = this.history.length - 1;
             }
-        } else if (typeof x == "number") {
+        } else if (typeof x === "number") {
             this.currentIndex = x;
-        } else if (typeof x == "undefined") {
+        } else if (typeof x === "undefined") {
             this.currentIndex++;
         }
         // 返回当前路径
@@ -88,4 +86,6 @@ export default class PathHistory {
         // 返回当前路径
         return this.history[--this.currentIndex];
     }
+    // 重置
+    // reset(){}
 }

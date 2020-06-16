@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "@typescript-eslint/no-var-requires":"off"
+        "@typescript-tslint/no-var-requires":0
     },
     "rulesDirectory": []
 }

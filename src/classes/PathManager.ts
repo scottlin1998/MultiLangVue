@@ -1,15 +1,15 @@
 export default class PathManager {
-    private _defaultPath: string | undefined;
-    private _currentPath: string | undefined;
+    private _defaultPath = "";
+    private _currentPath = "";
     private _rootPath: string | undefined;
-    private _pathArray: Array<{ name: string, fullPath: string }> = [];
+    private _pathArray: { name: string; fullPath: string }[] = [];
     private _history: string[] = [];
-    private _currentIndex: number = 0;
-    constructor()
-    constructor(defaultPath: string)
+    private _currentIndex = 0;
+    // constructor()
+    // constructor(defaultPath: string)
     constructor(x?: string) {
         // 设置默认路径
-        if (typeof x == "string")
+        if (typeof x === "string")
             this.defaultPath = x;
 
     }
@@ -34,28 +34,28 @@ export default class PathManager {
     //     this._currentPath = path;
     // }
     get defaultPath() {
-        if (!this._defaultPath) throw `还未设置 defaultPath`;
+        if (!this._defaultPath) return "";
         return this._defaultPath;
     }
     get currentPath() {
-        if (!this._currentPath) throw `还未设置 currentPath`;
+        if (!this._currentPath) return "";
         return this._currentPath;
     }
-    push(path: string) { }
-    go(index: number): void
-    go(path: string): void
+    // push(path: string) { }
+    // go(index: number): void
+    // go(path: string): void
     go(x: number | string): void {
-        if (typeof x == "number") {
-            switch(x){
-                case -1:break;
-                case 1:break;
+        if (typeof x === "number") {
+            switch (x) {
+                case -1: break;
+                case 1: break;
             }
-        } else if (typeof x == "string") { 
-            this.defaultPath = x;
         }
+        else if (typeof x === "string") this.defaultPath = x;
+
     }
     back() {
-        const preIndex = this._history.indexOf(this.currentPath)-1;
+        const preIndex = this._history.indexOf(this.currentPath) - 1;
         this.defaultPath = this._history[preIndex]
     }
 }
