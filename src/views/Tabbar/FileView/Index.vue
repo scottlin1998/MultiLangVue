@@ -20,6 +20,7 @@
         </template>
       </van-swipe-cell>-->
       <!-- {{tabPaths}} -->
+      
       <van-swipe style="height: 44px;" :show-indicators="false" :loop="false" vertical>
         <van-swipe-item>
           <div style="display:flex;">
@@ -210,9 +211,10 @@ export default class FileView extends Vue {
       }
     }).then(res => {
       const { data } = res;
-      console.log(data);
+      // console.log(data);
       this.list = data;
       this.finished = true;
+      console.log(this.pathHistory);
       // 当传入path时，记录现在位置
       if (path) this.pathHistory.go(path);
       // path && (this.currentPath = path);

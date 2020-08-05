@@ -15,6 +15,7 @@ export default class PathHistory {
         else if (index > this.history.length - 1) this._currentIndex = this.history.length - 1;
         // 正常
         else this._currentIndex = index;
+        // console.log(this._currentIndex,index);
     }
     // 获取现在的路径
     get currentPath() {
@@ -60,7 +61,7 @@ export default class PathHistory {
             if (this.history.length - 1 === this.currentIndex && this.history[this.currentIndex] !== x) {
                 // 情况一：插入新历史
                 this.history.push(x);
-                this.currentIndex++;
+                this.currentIndex += 1
             } else if (this.history[this.currentIndex] !== x) {
                 // 情况二：删除旧历史 和 插入新历史
                 this.history.splice(
@@ -72,7 +73,7 @@ export default class PathHistory {
         } else if (typeof x === "number") {
             this.currentIndex = x;
         } else if (typeof x === "undefined") {
-            this.currentIndex++;
+            this.currentIndex += 1;
         }
         // 返回当前路径
         return this.history[this.currentIndex];
@@ -84,7 +85,11 @@ export default class PathHistory {
     // 后退
     back(): string {
         // 返回当前路径
-        return this.history[--this.currentIndex];
+        this.currentIndex -= 1;
+        // const temp = --this.currentIndex;
+        console.log(this.currentIndex);
+        return this.history[this.currentIndex];
+
     }
     // 重置
     // reset(){}

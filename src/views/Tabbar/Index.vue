@@ -3,11 +3,11 @@
     <keep-alive>
       <router-view />
     </keep-alive>
-    <van-tabbar v-model="active" placeholder fixed>
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+    <van-tabbar v-model="active" placeholder fixed route>
+      <van-tabbar-item icon="home-o" to="/">任务</van-tabbar-item>
+      <van-tabbar-item icon="music" to="/audioPlayer">mp3+bgm</van-tabbar-item>
+      <van-tabbar-item icon="friends-o">收藏夹</van-tabbar-item>
+      <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
