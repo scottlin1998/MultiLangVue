@@ -10,7 +10,7 @@
   "dependencies": {
     "@types/lowdb": "^1.0.9",
     "@types/moment": "^2.13.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "lowdb": "^1.0.0",
     "tslint": "^6.1.2",
